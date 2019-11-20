@@ -23,6 +23,24 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 const App: () => React$Node = () => {
+
+  this.onSuccess = (metadata) => {
+    public_token = metadata.public_token
+    console.log("public_token: ", public_token)
+
+    // Send the public_token to an internal server
+    // and exchange it for an access_token.
+    // fetch("/get_access_token", {
+    //  method: "POST",
+    //  body: {
+    //    public_token: public_token,
+    //    accounts: metadata.accounts,
+    //    institution: metadata.institution,
+    //    link_session_id: metadata.link_session_id,
+    //  },
+    // });
+  }
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -33,7 +51,7 @@ const App: () => React$Node = () => {
             publicKey='38164201fbd7637a405a30149427cf'
             clientName='Dope Spend Tracker'
             env='sandbox'
-            onSuccess={e => console.log('success: ', e)}
+            onSuccess={this.onSuccess}
             onExit={e => console.log('exit: ', e)}
             product={['transactions']}
             language='en'
