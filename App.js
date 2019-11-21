@@ -1,12 +1,9 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * DopeSpendTracker App
  *
- * @format
- * @flow
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import PlaidLink from 'react-native-plaid-link-sdk';
 import {
   SafeAreaView,
@@ -22,45 +19,42 @@ import {
   Colors
 } from 'react-native/Libraries/NewAppScreen';
 
-const App: () => React$Node = () => {
+// Redux
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reducers from './js/reducers'
 
-  this.onSuccess = (metadata) => {
+const store = createStore(reducers);
+
+class App extends Component {
+
+  onSuccess = (metadata) => {
     public_token = metadata.public_token
     console.log("public_token: ", public_token)
-
-    // Send the public_token to an internal server
-    // and exchange it for an access_token.
-    // fetch("/get_access_token", {
-    //  method: "POST",
-    //  body: {
-    //    public_token: public_token,
-    //    accounts: metadata.accounts,
-    //    institution: metadata.institution,
-    //    link_session_id: metadata.link_session_id,
-    //  },
-    // });
   }
 
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
-          <PlaidLink
-            title='Link Financial Accounts'
-            publicKey='38164201fbd7637a405a30149427cf'
-            clientName='Dope Spend Tracker'
-            env='sandbox'
-            onSuccess={this.onSuccess}
-            onExit={e => console.log('exit: ', e)}
-            product={['transactions']}
-            language='en'
-            countryCodes={['US']}
-          />
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
+  render() {
+    return (
+      <Provider store={ store }>
+        <StatusBar barStyle="dark-content" />
+        <SafeAreaView>
+          <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
+            <PlaidLink
+              title='Link Financial Accounts'
+              publicKey='38164201fbd7637a405a30149427cf'
+              clientName='Dope Spend Tracker'
+              env='sandbox'
+              onSuccess={this.onSuccess}
+              onExit={e => console.log('exit: ', e)}
+              product={['transactions']}
+              language='en'
+              countryCodes={['US']}
+            />
+          </ScrollView>
+        </SafeAreaView>
+      </Provider>
+    );
+  }
 };
 
 
