@@ -38,6 +38,8 @@ function getAccessToken(public_token) {
     .then(resp => {
       // { access_token: string, error: object, item_id: string }
       // TODO: handle error response from  successfull (200) requests
+      console.log("request response:")
+      console.log(resp)
       dispatch(plaidTokenResponse(resp))
     })
     .catch(err => {
@@ -47,4 +49,9 @@ function getAccessToken(public_token) {
 }
 
 
-module.exports = { getAccessToken };
+module.exports = {
+  getAccessToken,
+  PLAID_TOKEN_REQUEST,
+  PLAID_TOKEN_RESPONSE,
+  PLAID_TOKEN_ERROR
+};

@@ -7,7 +7,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import PlaidLink from 'react-native-plaid-link-sdk';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
 import { getAccessToken } from 'js/actions';
 
@@ -20,6 +20,12 @@ class LoginScreen extends Component {
     this.props.dispatch(getAccessToken(public_token))
   }
 
+  renderAccessToken = () => {
+    if(!this.props.accessToken) {
+      return null;
+    }
+    return (<Text>{this.props.accessToken}</Text>)
+  }
 
   render() {
     return (
@@ -35,11 +41,16 @@ class LoginScreen extends Component {
           language='en'
           countryCodes={['US']}
         />
+        {this.renderAccessToken()}
       </View>
     );
   }
 };
 
+function mapStateToProps(state) {
+  return {
+    accessToken: state.config.accessToken,
+  }
+}
 
-
-module.exports = connect()(LoginScreen);
+module.exports = connect(mapStateToProps)(LoginScreen);
