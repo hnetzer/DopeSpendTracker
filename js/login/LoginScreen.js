@@ -7,24 +7,29 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import PlaidLink from 'react-native-plaid-link-sdk';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 
 import { getAccessToken } from 'js/actions';
 
 class LoginScreen extends Component {
 
   onSuccess = (metadata) => {
-    console.log(metadata)
-    const public_token = metadata.public_token
-    console.log("public_token: ", public_token)
-    this.props.dispatch(getAccessToken(public_token))
+    const linkData = {
+      accounts: metadata.accounts,
+      institution: metadata.institution,
+      publicToken: metadata.public_token
+    }
+    this.props.dispatch(getAccessToken(linkData))
   }
 
   renderAccessToken = () => {
-    if(!this.props.accessToken) {
-      return null;
-    }
-    return (<Text>{this.props.accessToken}</Text>)
+    return this.props.institutions.map(inst => {
+      return (<View>
+        <Text>{inst.name}</Text>
+        <TouchableOpacity><Text>Get Transactions</Text></TouchableOpacity>
+      </View>
+      )
+    })
   }
 
   render() {
@@ -48,8 +53,9 @@ class LoginScreen extends Component {
 };
 
 function mapStateToProps(state) {
+  console.log(state)
   return {
-    accessToken: state.config.accessToken,
+    institutions: state.plaid.institutions,
   }
 }
 

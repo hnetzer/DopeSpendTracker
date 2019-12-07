@@ -24,12 +24,13 @@ function plaidTokenError() {
   }
 }
 
-function getAccessToken(public_token) {
+function getAccessToken(linkData) {
   return dispatch => {
+
     dispatch(plaidTokenRequest())
     fetch("http://localhost:8000/get_access_token", {
       method: 'POST',
-      body: JSON.stringify({ public_token: public_token }),
+      body: JSON.stringify({ public_token: linkData.publicToken }),
       headers: {
         'Content-Type': 'application/json'
       },
@@ -38,9 +39,13 @@ function getAccessToken(public_token) {
     .then(resp => {
       // { access_token: string, error: object, item_id: string }
       // TODO: handle error response from  successfull (200) requests
-      console.log("request response:")
-      console.log(resp)
-      dispatch(plaidTokenResponse(resp))
+      console.log("got response from API")
+      dispatch(plaidTokenResponse({
+        accessToken: resp.access_token,
+        itemId: resp.item_id,
+        institution: linkData.institution,
+        accounts: linkData.accounts
+      }))
     })
     .catch(err => {
       dispatch(plaidTokenError(err))

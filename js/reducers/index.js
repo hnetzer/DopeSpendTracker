@@ -3,5 +3,5 @@
 import { combineReducers } from "redux";
 
 module.exports = combineReducers({
-  config: require("./config"),
+  plaid: require("./plaid"),
 });
