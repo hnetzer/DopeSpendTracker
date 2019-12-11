@@ -5,12 +5,17 @@ import { createReducer } from '@reduxjs/toolkit'
 import {
   PLAID_TOKEN_REQUEST,
   PLAID_TOKEN_RESPONSE,
-  PLAID_TOKEN_ERROR
+  PLAID_TOKEN_ERROR,
+  PLAID_TRANSACTION_REQUEST,
+  PLAID_TRANSACTION_RESPONSE,
+  PLAID_TRANSACTION_ERROR
 } from 'js/actions';
 
 
 const initialState = {
   institutions: [],
+  accounts: [],
+  transactions:[]
 }
 
 const plaid = createReducer(initialState, {
@@ -24,9 +29,19 @@ const plaid = createReducer(initialState, {
     }];
   },
   PLAID_TOKEN_ERROR: (state, action) => {
-
+    console.log(action)
   },
   PLAID_TOKEN_REQUEST: (state, action) => {
+    console.log(action)
+  },
+  PLAID_TRANSACTION_RESPONSE:(state, action) => {
+    state.accounts = action.data.accounts;
+    state.transactions = action.data.transactions;
+  },
+  PLAID_TRANSACTION_REQUEST: (state, action) => {
+
+  },
+  PLAID_TRANSACTION_ERROR: (state, action) => {
 
   }
 });

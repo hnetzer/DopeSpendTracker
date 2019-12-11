@@ -17,7 +17,7 @@ function plaidTokenResponse(data) {
   }
 }
 
-function plaidTokenError() {
+function plaidTokenError(error) {
   return {
     type: PLAID_TOKEN_ERROR,
     error: error
@@ -53,10 +53,52 @@ function getAccessToken(linkData) {
   };
 }
 
+const PLAID_TRANSACTION_REQUEST = "PLAID_TRANSACTION_REQUEST";
+const PLAID_TRANSACTION_RESPONSE = "PLAID_TRANSACTION_RESPONSE";
+const PLAID_TRANSACTION_ERROR = "PLAID_TRANSACTION_ERROR";
+
+function plaidTransactionRequest() {
+  return {
+    type: PLAID_TRANSACTION_REQUEST
+  }
+}
+
+function plaidTransactionResponse(data) {
+  return {
+    type: PLAID_TRANSACTION_RESPONSE,
+    data: data
+  }
+}
+
+function plaidTransactionError(error) {
+  return {
+    type: PLAID_TRANSACTION_ERROR,
+    error: error
+  }
+}
+
+function getTransactions(accessToken) {
+  return dispatch => {
+
+    dispatch(plaidTransactionRequest())
+    fetch(`http://localhost:8000/transactions?access_token=${accessToken}`)
+    .then(resp => resp.json())
+    .then(resp => {
+      console.log('got transactions response')
+      dispatch(plaidTransactionResponse(resp.transactions))
+      console.log(resp.transactions)
+    })
+    .catch(err => {
+      dispatch(plaidTokenError(err))
+    })
+  };
+}
+
 
 module.exports = {
   getAccessToken,
   PLAID_TOKEN_REQUEST,
   PLAID_TOKEN_RESPONSE,
-  PLAID_TOKEN_ERROR
+  PLAID_TOKEN_ERROR,
+  getTransactions
 };
