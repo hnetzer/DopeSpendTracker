@@ -46,6 +46,9 @@ function getAccessToken(linkData) {
         institution: linkData.institution,
         accounts: linkData.accounts
       }))
+
+      // next, let's do the work to get the transactions here as well
+      dispatch(getTransactions(resp.access_token))
     })
     .catch(err => {
       dispatch(plaidTokenError(err))

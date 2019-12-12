@@ -13,15 +13,6 @@ import { getAccessToken, getTransactions } from 'js/actions';
 
 class LoginScreen extends Component {
 
-  onSuccess = (metadata) => {
-    const linkData = {
-      accounts: metadata.accounts,
-      institution: metadata.institution,
-      publicToken: metadata.public_token
-    }
-    this.props.dispatch(getAccessToken(linkData))
-  }
-
   getTransactions = (inst) => {
     console.log('getting transactions for...')
     console.log(inst.name)
@@ -61,7 +52,7 @@ class LoginScreen extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <PlaidLink
           title='Link Financial Accounts'
           publicKey='38164201fbd7637a405a30149427cf'
