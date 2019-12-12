@@ -6,6 +6,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import LoginScreen  from 'js/screens/LoginScreen';
 import LinkPlaidScreen from 'js/screens/LinkPlaidScreen';
 import SelectAccountsScreen from 'js/screens/SelectAccountsScreen';
+import AnnotationScreen from 'js/screens/AnnotationScreen';
 
 const AppNavigator = createStackNavigator({
   LinkPlaid: {
@@ -16,6 +17,9 @@ const AppNavigator = createStackNavigator({
   },
   Login: {
     screen: LoginScreen,
+  },
+  Annotation: {
+    screen: AnnotationScreen,
   }
 });
 

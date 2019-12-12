@@ -13,8 +13,10 @@ const AccountListItem = (props) => {
   useEffect(() => {
     if(selected) {
       props.onSelect(props.account)
+    } else {
+      props.onUnselect(props.account)
     }
-  });
+  }, [selected]);
 
   const getContainerStyle = () => {
     if(selected) {
