@@ -43,6 +43,7 @@ const LinkPlaidScreen = (props) => {
 };
 
 function mapStateToProps(state) {
+  console.log(state)
   return {
     institutions: state.plaid.institutions,
   }

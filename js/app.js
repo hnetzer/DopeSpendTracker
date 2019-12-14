@@ -8,7 +8,9 @@ import { StatusBar } from 'react-native';
 
 // Redux
 import { Provider } from 'react-redux';
-import store from 'js/store'
+import { connect } from "react-redux";
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from 'js/store'
 
 // Screens & Navigation
 import AppContainer from 'js/navigation'
@@ -17,7 +19,9 @@ const App = () => {
   return (
     <Provider store={ store }>
       <StatusBar barStyle="dark-content" />
-      <AppContainer />
+      <PersistGate loading={null} persistor={persistor}>
+        <AppContainer />
+      </PersistGate>
     </Provider>
   );
 };
