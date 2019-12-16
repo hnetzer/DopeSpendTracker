@@ -6,24 +6,30 @@
 
 import React, { useState } from 'react';
 import { connect } from "react-redux";
-import { Card, CardHeader } from 'js/components';
+import { Card, CardSection, Divider, TransactionHeader } from 'js/components';
 
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 
 const AnnotationScreen = (props) => {
 
   const renderTransaction = (t) => {
-    var date = new Date(t.date)
     return (
       <Card>
-        <CardHeader metatitle={date.toLocaleDateString('en-US')} title={t.name} />
+        <CardSection>
+          <TransactionHeader date={t.date} title={t.name} />
+        </CardSection>
+        <Divider />
+        <CardSection title="Category" />
+        <Divider />
+        <CardSection title="tags" />
+        <CardSection title="memo" />
       </Card>
     )
   }
 
   return (<View style={styles.container}>
     <FlatList
-      style={{ width: '100%', height: '80%' }}
+      style={styles.flatList}
       data={props.transactions}
       renderItem={({item, index}) => renderTransaction(item)}
       keyExtractor={(transaction) => transaction.transaction_id} />
@@ -36,7 +42,11 @@ const styles = StyleSheet.create({
     paddingTop: 22,
     paddingBottom: 64,
     alignItems: 'center',
+    backgroundColor: "#F1F5FF",
   },
+  flatList: {
+
+  }
 });
 
 function mapStateToProps(state) {

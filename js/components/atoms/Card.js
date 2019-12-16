@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowOffset: { width: 0, height: 0 },
     shadowRadius: 4,
-    padding: basePadding / 2
+    // TODO: remove marginBottom after adding proper layout
+    marginBottom: 30
   }
 });
 
