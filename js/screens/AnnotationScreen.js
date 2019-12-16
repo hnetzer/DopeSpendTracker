@@ -6,6 +6,7 @@
 
 import React, { useState } from 'react';
 import { connect } from "react-redux";
+import { Card, CardHeader } from 'js/components';
 
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 
@@ -13,14 +14,14 @@ const AnnotationScreen = (props) => {
 
   const renderTransaction = (t) => {
     var date = new Date(t.date)
-    return (<View style={styles.transaction}>
-      <Text style={styles.name}>{t.name}</Text>
-      <Text style={styles.date}>{date.toLocaleDateString('en-US')}</Text>
-    </View>);
+    return (
+      <Card>
+        <CardHeader metatitle={date.toLocaleDateString('en-US')} title={t.name} />
+      </Card>
+    )
   }
 
   return (<View style={styles.container}>
-    <Text style={styles.header}>[annotation screen]</Text>
     <FlatList
       style={{ width: '100%', height: '80%' }}
       data={props.transactions}
@@ -35,29 +36,10 @@ const styles = StyleSheet.create({
     paddingTop: 22,
     paddingBottom: 64,
     alignItems: 'center',
-    justifyContent: 'space-between'
-  },
-  header: {
-    fontSize: 24,
-    paddingBottom: 16,
-  },
-  transaction: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingTop: 10,
-  },
-  name: {
-    fontSize: 16,
-  },
-  date: {
-    fontSize: 14,
-    color: 'blue'
   },
 });
 
 function mapStateToProps(state) {
-  console.log(state)
   return {
     transactions: state.plaid.transactions,
   }
