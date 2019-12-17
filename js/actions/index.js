@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
-import * as plaidActions from "./plaid";
+import * as plaidActions from './plaid';
 
 module.exports = {
-  ...plaidActions
+  ...plaidActions,
 };

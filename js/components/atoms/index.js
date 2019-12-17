@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 //atoms
 import Card from './Card';
@@ -12,5 +12,5 @@ module.exports = {
   Divider,
   Button,
   Title,
-  Subtitle
-}
+  Subtitle,
+};

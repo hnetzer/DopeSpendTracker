@@ -2,23 +2,26 @@
  * DopeSpendTracker App
  *
  */
-"use strict";
+'use strict';
 
-import React, { useState } from 'react';
-import { connect } from "react-redux";
-import { Receipt } from 'js/components';
+import React, {useState} from 'react';
+import {connect} from 'react-redux';
+import {Receipt} from 'js/components';
 
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import {View, Text, StyleSheet, FlatList} from 'react-native';
 
-const AnnotationScreen = (props) => {
-  return (<View style={styles.container}>
-    <FlatList
-      style={styles.flatList}
-      data={props.transactions}
-      renderItem={({item, index}) => <Receipt transaction={item} />}
-      keyExtractor={(transaction) => transaction.transaction_id} />
-  </View>)
-}
+const AnnotationScreen = props => {
+  return (
+    <View style={styles.container}>
+      <FlatList
+        style={styles.flatList}
+        data={props.transactions}
+        renderItem={({item, index}) => <Receipt transaction={item} />}
+        keyExtractor={transaction => transaction.transaction_id}
+      />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -26,17 +29,15 @@ const styles = StyleSheet.create({
     paddingTop: 22,
     paddingBottom: 64,
     alignItems: 'center',
-    backgroundColor: "#F1F5FF",
+    backgroundColor: '#F1F5FF',
   },
-  flatList: {
-
-  }
+  flatList: {},
 });
 
 function mapStateToProps(state) {
   return {
     transactions: state.plaid.transactions,
-  }
+  };
 }
 
 export default connect(mapStateToProps)(AnnotationScreen);

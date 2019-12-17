@@ -2,21 +2,21 @@
  * DopeSpendTracker App
  *
  */
-"use strict";
+'use strict';
 
 import React from 'react';
-import { View } from 'react-native';
+import {View} from 'react-native';
 
-const Divider = ({ height = 1 }) => {
+const Divider = ({height = 1}) => {
   return (
     <View
       style={{
         flex: 1,
         maxHeight: height,
-        backgroundColor: "rgba(0,0,0,0.1)",
+        backgroundColor: 'rgba(0,0,0,0.1)',
       }}
     />
   );
-}
+};
 
 export default Divider;

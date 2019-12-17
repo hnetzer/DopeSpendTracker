@@ -2,30 +2,28 @@
  * DopeSpendTracker App
  *
  */
-"use strict";
+'use strict';
 
-import React, { useState, useEffect } from 'react';
-import { Text, StyleSheet, TouchableOpacity } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {Text, StyleSheet, TouchableOpacity} from 'react-native';
 
-const Button = (props) => {
-
+const Button = props => {
   const getContainerStyle = () => {
-    if(props.disabled) {
-      return [styles.container, styles.disabled]
+    if (props.disabled) {
+      return [styles.container, styles.disabled];
     } else {
-      return [styles.container, styles.enabled]
+      return [styles.container, styles.enabled];
     }
-  }
+  };
 
-  const getTextStyles = () => {
+  const getTextStyles = () => {};
 
-  }
-
-  return (<TouchableOpacity onPress={props.onPress} style={getContainerStyle()}>
-    <Text style={styles.title}>{props.title}</Text>
-  </TouchableOpacity>
-  )
-}
+  return (
+    <TouchableOpacity onPress={props.onPress} style={getContainerStyle()}>
+      <Text style={styles.title}>{props.title}</Text>
+    </TouchableOpacity>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -35,15 +33,15 @@ const styles = StyleSheet.create({
     paddingRight: 30,
   },
   disabled: {
-    backgroundColor: 'gray'
+    backgroundColor: 'gray',
   },
   enabled: {
-    backgroundColor: '#4169E1'
+    backgroundColor: '#4169E1',
   },
   title: {
     fontSize: 24,
-    color: 'white'
-  }
+    color: 'white',
+  },
 });
 
 export default Button;
