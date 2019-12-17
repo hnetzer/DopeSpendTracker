@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import PlaidLink from 'react-native-plaid-link-sdk';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { PLAID_PUBLIC_KEY } from 'react-native-dotenv';
 
 import { getAccessToken, getTransactions } from 'js/actions';
 
@@ -55,7 +56,7 @@ class LoginScreen extends Component {
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <PlaidLink
           title='Link Financial Accounts'
-          publicKey='38164201fbd7637a405a30149427cf'
+          publicKey={PLAID_PUBLIC_KEY}
           clientName='Spend Tracker'
           env='sandbox'
           onSuccess={this.onSuccess}
