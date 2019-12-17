@@ -3,21 +3,21 @@
  *
  */
 
-import React, { Component } from 'react';
-import { StatusBar } from 'react-native';
+import React, {Component} from 'react';
+import {StatusBar} from 'react-native';
 
 // Redux
-import { Provider } from 'react-redux';
-import { connect } from "react-redux";
-import { PersistGate } from 'redux-persist/integration/react';
-import { store, persistor } from 'js/store'
+import {Provider} from 'react-redux';
+import {connect} from 'react-redux';
+import {PersistGate} from 'redux-persist/integration/react';
+import {store, persistor} from 'js/store';
 
 // Screens & Navigation
-import AppContainer from 'js/navigation'
+import AppContainer from 'js/navigation';
 
 const App = () => {
   return (
-    <Provider store={ store }>
+    <Provider store={store}>
       <StatusBar barStyle="dark-content" />
       <PersistGate loading={null} persistor={persistor}>
         <AppContainer />
@@ -25,6 +25,5 @@ const App = () => {
     </Provider>
   );
 };
-
 
 export default App;

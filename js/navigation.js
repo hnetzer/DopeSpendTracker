@@ -2,16 +2,16 @@
  * DopeSpendTracker App
  *
  */
-"use strict";
+'use strict';
 
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
 // Navigation
-import 'react-native-gesture-handler'
-import { createAppContainer, createSwitchNavigator} from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import 'react-native-gesture-handler';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 
-import LoginScreen  from 'js/screens/LoginScreen';
+import LoginScreen from 'js/screens/LoginScreen';
 import LinkPlaidScreen from 'js/screens/LinkPlaidScreen';
 import SelectAccountsScreen from 'js/screens/SelectAccountsScreen';
 import AnnotationScreen from 'js/screens/AnnotationScreen';
@@ -19,24 +19,24 @@ import LoadingScreen from 'js/screens/LoadingScreen';
 
 const AccountLinkStack = createStackNavigator({
   LinkPlaid: {
-    screen: LinkPlaidScreen
+    screen: LinkPlaidScreen,
   },
   SelectAccounts: {
-    screen: SelectAccountsScreen
+    screen: SelectAccountsScreen,
   },
   Login: {
     screen: LoginScreen,
   },
   Annotation: {
     screen: AnnotationScreen,
-  }
+  },
 });
 
 const AnnotateStack = createStackNavigator({
   Annotation: {
     screen: AnnotationScreen,
-  }
-})
+  },
+});
 
 export default createAppContainer(
   createSwitchNavigator(
@@ -47,6 +47,6 @@ export default createAppContainer(
     },
     {
       initialRouteName: 'Loading',
-    }
-  )
+    },
+  ),
 );

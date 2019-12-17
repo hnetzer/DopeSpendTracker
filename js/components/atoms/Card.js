@@ -2,17 +2,15 @@
  * DopeSpendTracker App
  *
  */
-"use strict";
+'use strict';
 
 import React from 'react';
-import { colors, dimensions, border, basePadding } from 'js/style'
+import {colors, dimensions, border, basePadding} from 'js/style';
 
-import { View, StyleSheet } from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
-const Card = (props) => {
-  return (<View style={styles.card}>
-    {props.children}
-  </View>);
+const Card = props => {
+  return <View style={styles.card}>{props.children}</View>;
 };
 
 const styles = StyleSheet.create({
@@ -24,11 +22,11 @@ const styles = StyleSheet.create({
     borderRadius: border.radius,
     shadowColor: colors.grey,
     shadowOpacity: 0.3,
-    shadowOffset: { width: 0, height: 0 },
+    shadowOffset: {width: 0, height: 0},
     shadowRadius: 4,
     // TODO: remove marginBottom after adding proper layout
-    marginBottom: 30
-  }
+    marginBottom: 30,
+  },
 });
 
 export default Card;

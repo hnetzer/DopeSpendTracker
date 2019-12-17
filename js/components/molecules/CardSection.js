@@ -2,18 +2,20 @@
  * DopeSpendTracker App
  *
  */
-"use strict";
+'use strict';
 
-import React from "react";
-import { Text, View, StyleSheet } from "react-native";
-import { Subtitle } from '../atoms'
-import { basePadding } from 'js/style'
+import React from 'react';
+import {Text, View, StyleSheet} from 'react-native';
+import {Subtitle} from '../atoms';
+import {basePadding} from 'js/style';
 
-const CardSection = ({ title, children }) => {
+const CardSection = ({title, children}) => {
   const renderTitle = () => {
-    if (!title) { return null; }
-    return (<Subtitle>{title}</Subtitle>)
-  }
+    if (!title) {
+      return null;
+    }
+    return <Subtitle>{title}</Subtitle>;
+  };
 
   return (
     <View style={styles.container}>
@@ -21,7 +23,7 @@ const CardSection = ({ title, children }) => {
       {children}
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

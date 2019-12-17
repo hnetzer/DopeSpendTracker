@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
-import { combineReducers } from "redux";
+import {combineReducers} from 'redux';
 
 module.exports = combineReducers({
-  plaid: require("./plaid"),
+  plaid: require('./plaid'),
 });

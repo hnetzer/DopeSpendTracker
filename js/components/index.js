@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 import AccountListItem from './AccountListItem';
 
@@ -11,7 +11,7 @@ import Button from './atoms/Button';
 import CardSection from './molecules/CardSection';
 
 //organisms
-import Receipt from './organisms/Receipt'
+import Receipt from './organisms/Receipt';
 
 module.exports = {
   AccountListItem,
@@ -19,5 +19,5 @@ module.exports = {
   Button,
   Card,
   CardSection,
-  Divider
-}
+  Divider,
+};

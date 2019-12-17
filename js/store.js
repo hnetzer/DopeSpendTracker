@@ -1,9 +1,9 @@
 import thunk from 'redux-thunk';
-import { applyMiddleware, createStore } from 'redux';
-import { persistStore, persistReducer } from 'redux-persist';
+import {applyMiddleware, createStore} from 'redux';
+import {persistStore, persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-community/async-storage';
 
-import rootReducer from 'js/reducers'
+import rootReducer from 'js/reducers';
 
 // Middleware: Redux Persist Config
 const persistConfig = {
@@ -12,9 +12,7 @@ const persistConfig = {
   // Storage Method (React Native)
   storage: AsyncStorage,
   // Whitelist (Save Specific Reducers)
-  whitelist: [
-    'plaid',
-  ],
+  whitelist: ['plaid'],
   // Blacklist (Don't Save Specific Reducers)
   blacklist: [],
 };
@@ -27,7 +25,4 @@ const store = createStore(persistedReducer, applyMiddleware(thunk));
 // Middleware: Redux Persist Persister
 let persistor = persistStore(store);
 
-export {
-  store,
-  persistor
-}
+export {store, persistor};
