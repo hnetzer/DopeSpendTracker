@@ -25,7 +25,9 @@ const Receipt = ({ transaction }) => {
         </View>
       </CardSection>
       <Divider />
-      <CardSection title={t.category[0]} />
+      <CardSection title={t.category[0]}>
+        {t.category.map((c,i) => (<Text key={i}>{c}</Text>))}
+      </CardSection>
       <Divider />
       <CardSection title="tags" />
       <CardSection title="memo" />
