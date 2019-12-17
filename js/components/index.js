@@ -11,13 +11,13 @@ import Button from './atoms/Button';
 import CardSection from './molecules/CardSection';
 
 //organisms
-import TransactionHeader from './organisms/TransactionHeader'
+import Receipt from './organisms/Receipt'
 
 module.exports = {
   AccountListItem,
+  Receipt,
   Button,
   Card,
-  TransactionHeader,
   CardSection,
   Divider
 }
