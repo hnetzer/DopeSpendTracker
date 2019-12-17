@@ -1,5 +1,7 @@
 "use strict";
 
+import { API_BASE_URI } from 'react-native-dotenv';
+
 const PLAID_TOKEN_REQUEST = "PLAID_TOKEN_REQUEST";
 const PLAID_TOKEN_RESPONSE = "PLAID_TOKEN_RESPONSE";
 const PLAID_TOKEN_ERROR = "PLAID_TOKEN_ERROR";
@@ -28,7 +30,7 @@ function getAccessToken(linkData) {
   return dispatch => {
 
     dispatch(plaidTokenRequest())
-    fetch("http://localhost:8000/get_access_token", {
+    fetch(`${API_BASE_URI}/get_access_token`, {
       method: 'POST',
       body: JSON.stringify({ public_token: linkData.publicToken }),
       headers: {
@@ -84,7 +86,7 @@ function getTransactions(accessToken) {
   return dispatch => {
 
     dispatch(plaidTransactionRequest())
-    fetch(`http://localhost:8000/transactions?access_token=${accessToken}`)
+    fetch(`${API_BASE_URI}/transactions?access_token=${accessToken}`)
     .then(resp => resp.json())
     .then(resp => {
       console.log('got transactions response')
