@@ -10,6 +10,8 @@ import {View, Text, StyleSheet, FlatList} from 'react-native';
 
 import {AccountListItem, Button} from 'js/components';
 
+import {base, text} from '../style';
+
 import {getAccessToken} from 'js/actions';
 
 const SelectAccountsScreen = props => {
@@ -34,7 +36,10 @@ const SelectAccountsScreen = props => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Select Accounts</Text>
+      <Text style={styles.header}>
+        {console.log(props.accounts)}
+        Select Account{props.accounts.length > 1 ? 's' : null}
+      </Text>
       <FlatList
         style={{width: '100%', height: '80%'}}
         data={props.accounts}
@@ -47,11 +52,13 @@ const SelectAccountsScreen = props => {
         )}
         keyExtractor={account => account.account_id}
       />
-      <Button
-        title="Next"
-        disabled={accountIds.length < 1}
-        onPress={onPressNext}
-      />
+      <View style={{alignItems: 'flex-end'}}>
+        <Button
+          title="Next"
+          disabled={accountIds.length < 1}
+          onPress={onPressNext}
+        />
+      </View>
     </View>
   );
 };
@@ -61,12 +68,12 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 22,
     paddingBottom: 64,
-    alignItems: 'center',
     justifyContent: 'space-between',
+    padding: base.padding,
   },
   header: {
-    fontSize: 24,
-    paddingBottom: 16,
+    fontSize: text.huge,
+    fontWeight: '800',
   },
 });
 

@@ -45,8 +45,9 @@ export default createAppContainer(
       AccountLink: AccountLinkStack,
       Annotate: AnnotateStack,
     },
+    // This should be set to Loading
     {
-      initialRouteName: 'Loading',
+      initialRouteName: 'AccountLink',
     },
   ),
 );

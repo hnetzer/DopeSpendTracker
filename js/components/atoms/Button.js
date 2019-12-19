@@ -6,6 +6,7 @@
 
 import React, {useState, useEffect} from 'react';
 import {Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {colors, border, text} from '../../style';
 
 const Button = props => {
   const getContainerStyle = () => {
@@ -19,7 +20,10 @@ const Button = props => {
   const getTextStyles = () => {};
 
   return (
-    <TouchableOpacity onPress={props.onPress} style={getContainerStyle()}>
+    <TouchableOpacity
+      activeOpacity={0.8}
+      onPress={props.onPress}
+      style={getContainerStyle()}>
       <Text style={styles.title}>{props.title}</Text>
     </TouchableOpacity>
   );
@@ -27,19 +31,21 @@ const Button = props => {
 
 const styles = StyleSheet.create({
   container: {
+    justifyContent: 'center',
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 30,
     paddingRight: 30,
+    borderRadius: border.radius,
   },
   disabled: {
-    backgroundColor: 'gray',
+    backgroundColor: colors.accent_4,
   },
   enabled: {
-    backgroundColor: '#4169E1',
+    backgroundColor: colors.accent_7,
   },
   title: {
-    fontSize: 24,
+    fontSize: text.big,
     color: 'white',
   },
 });

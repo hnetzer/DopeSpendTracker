@@ -28,9 +28,14 @@ const LinkPlaidScreen = props => {
   };
 
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    <View
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
       <PlaidLink
-        title="Link Financial Accounts"
+        title="Link Financial Account"
         publicKey={PLAID_PUBLIC_KEY}
         clientName="Spend Tracker"
         env="sandbox"
