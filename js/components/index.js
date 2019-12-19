@@ -6,6 +6,7 @@ import AccountListItem from './AccountListItem';
 import Card from './atoms/Card';
 import Divider from './atoms/Divider';
 import Button from './atoms/Button';
+import Header from './atoms/Header';
 
 //molecules
 import CardSection from './molecules/CardSection';
@@ -20,4 +21,5 @@ module.exports = {
   Card,
   CardSection,
   Divider,
+  Header,
 };

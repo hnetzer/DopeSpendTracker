@@ -6,6 +6,9 @@
 
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
+
+import {base, colors} from '../style';
+
 import {Receipt} from 'js/components';
 
 import {View, Text, StyleSheet, FlatList} from 'react-native';
@@ -26,12 +29,13 @@ const AnnotationScreen = props => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 22,
-    paddingBottom: 64,
     alignItems: 'center',
-    backgroundColor: '#F1F5FF',
+    backgroundColor: colors.background,
   },
-  flatList: {},
+  flatList: {
+    backgroundColor: colors.accent_1,
+    padding: base.padding,
+  },
 });
 
 function mapStateToProps(state) {

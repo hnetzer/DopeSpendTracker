@@ -6,48 +6,33 @@
 
 import React, {useState, useEffect} from 'react';
 import {Text, StyleSheet, TouchableOpacity} from 'react-native';
-import {colors, border, text} from '../../style';
+
+import styled from 'styled-components';
+import {colors, base, text} from '../../style';
 
 const Button = props => {
-  const getContainerStyle = () => {
-    if (props.disabled) {
-      return [styles.container, styles.disabled];
-    } else {
-      return [styles.container, styles.enabled];
-    }
-  };
-
-  const getTextStyles = () => {};
+  const Container = styled.View`
+    justify-content: center;
+    padding: ${base.padding * 0.8}px ${base.padding * 1.8}px;
+    border-radius: ${base.radius};
+    box-shadow: 0px 2px 2px
+      ${props => (props.disabled ? 'rgba(0,0,0,0)' : 'rgba(0,0,0,0.05)')};
+    background-color: ${props =>
+      props.disabled ? colors.accent_2 : colors.cyan};
+  `;
+  const Title = styled.Text`
+    font-size: ${text.big}px;
+    font-weight: ${text.heavy};
+    color: ${props => (props.disabled ? colors.accent_1 : colors.accent_7)};
+  `;
 
   return (
-    <TouchableOpacity
-      activeOpacity={0.8}
-      onPress={props.onPress}
-      style={getContainerStyle()}>
-      <Text style={styles.title}>{props.title}</Text>
+    <TouchableOpacity activeOpacity={0.8} onPress={props.onPress}>
+      <Container disabled={props.disabled}>
+        <Title disabled={props.disabled}>{props.title}</Title>
+      </Container>
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 30,
-    paddingRight: 30,
-    borderRadius: border.radius,
-  },
-  disabled: {
-    backgroundColor: colors.accent_4,
-  },
-  enabled: {
-    backgroundColor: colors.accent_7,
-  },
-  title: {
-    fontSize: text.big,
-    color: 'white',
-  },
-});
 
 export default Button;

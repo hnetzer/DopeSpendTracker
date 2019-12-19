@@ -8,9 +8,10 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {View, Text, StyleSheet, FlatList} from 'react-native';
 
-import {AccountListItem, Button} from 'js/components';
+import styled from 'styled-components';
+import {base, colors, text} from '../style';
 
-import {base, text} from '../style';
+import {AccountListItem, Button} from 'js/components';
 
 import {getAccessToken} from 'js/actions';
 
@@ -34,15 +35,22 @@ const SelectAccountsScreen = props => {
     props.navigation.navigate('Annotation');
   };
 
+  const Title = styled.Text`
+    color: ${colors.foreground};
+    font-weight: ${text.black};
+    font-size: ${text.huge}px;
+    padding-bottom: ${base.padding}px;
+  `;
+
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>
+      <Title>
         {console.log(props.accounts)}
         Select Account{props.accounts.length > 1 ? 's' : null}
-      </Text>
+      </Title>
       <FlatList
-        style={{width: '100%', height: '80%'}}
         data={props.accounts}
+        showsVerticalScrollIndicator={false}
         renderItem={({item, index}) => (
           <AccountListItem
             account={item}
@@ -52,7 +60,12 @@ const SelectAccountsScreen = props => {
         )}
         keyExtractor={account => account.account_id}
       />
-      <View style={{alignItems: 'flex-end'}}>
+      <View
+        style={{
+          position: 'absolute',
+          bottom: base.padding,
+          right: base.padding,
+        }}>
         <Button
           title="Next"
           disabled={accountIds.length < 1}
@@ -66,14 +79,8 @@ const SelectAccountsScreen = props => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 22,
-    paddingBottom: 64,
     justifyContent: 'space-between',
     padding: base.padding,
-  },
-  header: {
-    fontSize: text.huge,
-    fontWeight: '800',
   },
 });
 

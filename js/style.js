@@ -3,16 +3,16 @@ import {Dimensions} from 'react-native';
 var {height, width} = Dimensions.get('window');
 
 const dimensions = {
-  screenHeight: height,
-  screenWidth: width,
+  height: height,
+  width: width,
 };
 
 const em = 8;
 
 // Base
 const base = {
-  margin: dimensions.screenHeight * 0.02,
-  padding: dimensions.screenHeight * 0.02,
+  margin: dimensions.height * 0.018,
+  padding: dimensions.width * 0.018,
   radius: em,
 };
 
@@ -22,10 +22,11 @@ const text = {
   big: em * 2.4,
   default: em * 2,
   small: em * 1.8,
-  tiny: em * 1.6,
+  tiny: em * 1.5,
   light: '300',
   regular: '400',
   heavy: '600',
+  black: '800',
   mono: 'Menlo-Regular',
 };
 
@@ -85,7 +86,7 @@ const border = {
 
 // Global styling
 const basefontsize = em * 2;
-const basePadding = dimensions.screenHeight * 0.02;
+const basePadding = dimensions.height * 0.02;
 
 // Depreciate these
 const fontSizes = {

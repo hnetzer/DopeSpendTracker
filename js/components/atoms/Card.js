@@ -5,7 +5,7 @@
 'use strict';
 
 import React from 'react';
-import {colors, dimensions, border, basePadding} from 'js/style';
+import {base, colors, dimensions, border, basePadding} from 'js/style';
 
 import {View, StyleSheet} from 'react-native';
 
@@ -16,16 +16,16 @@ const Card = props => {
 const styles = StyleSheet.create({
   card: {
     flex: 1,
-    backgroundColor: colors.white,
-    width: dimensions.screenWidth - basePadding * 2,
-    height: (dimensions.screenHeight / 1.8) * 0.8,
+    backgroundColor: colors.background,
+    width: dimensions.width - base.padding * 2,
+    height: (dimensions.height / 1.8) * 0.8,
     borderRadius: border.radius,
     shadowColor: colors.grey,
     shadowOpacity: 0.3,
     shadowOffset: {width: 0, height: 0},
     shadowRadius: 4,
     // TODO: remove marginBottom after adding proper layout
-    marginBottom: 30,
+    marginBottom: base.margin,
   },
 });
 

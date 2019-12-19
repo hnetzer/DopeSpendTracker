@@ -4,7 +4,9 @@
  */
 
 import React, {Component} from 'react';
-import {StatusBar} from 'react-native';
+import {StatusBar, SafeAreaView} from 'react-native';
+
+import {colors} from './style';
 
 // Redux
 import {Provider} from 'react-redux';
@@ -18,10 +20,12 @@ import AppContainer from 'js/navigation';
 const App = () => {
   return (
     <Provider store={store}>
-      <StatusBar barStyle="dark-content" />
-      <PersistGate loading={null} persistor={persistor}>
-        <AppContainer />
-      </PersistGate>
+      <SafeAreaView style={{flex: 1, background: 'transparent'}}>
+        <StatusBar barStyle="dark-content" />
+        <PersistGate loading={null} persistor={persistor}>
+          <AppContainer />
+        </PersistGate>
+      </SafeAreaView>
     </Provider>
   );
 };

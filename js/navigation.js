@@ -47,7 +47,7 @@ export default createAppContainer(
     },
     // This should be set to Loading
     {
-      initialRouteName: 'AccountLink',
+      initialRouteName: 'Loading',
     },
   ),
 );

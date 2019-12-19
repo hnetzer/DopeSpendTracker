@@ -5,9 +5,18 @@
 'use strict';
 
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ProgressViewIOSComponent,
+} from 'react-native';
 
+import styled from 'styled-components';
 import {colors, base, text} from '../style';
+
+import {Header} from '../components/atoms/Header';
 
 const AccountListItem = props => {
   const [selected, setSelected] = useState(false);
@@ -20,45 +29,50 @@ const AccountListItem = props => {
     }
   }, [selected]);
 
-  const getContainerStyle = () => {
-    if (selected) {
-      return [styles.container, styles.selected];
-    }
-    return styles.container;
-  };
+  const Container = styled.View`
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: ${base.padding}px;
+    border-radius: ${base.radius};
+    margin-bottom: ${base.margin};
+    box-shadow: 0px 1px 1px rgba(0,0,0,0.02);
+    border: 1px solid ${props =>
+      props.selected ? colors.accent_7 : colors.accent_2}
+    background-color: ${props =>
+      props.selected ? colors.accent_7 : colors.background};
+  `;
 
   return (
     <TouchableOpacity
-      style={getContainerStyle()}
+      activeOpacity={0.8}
       onPress={() => setSelected(!selected)}>
-      <Text style={styles.name}>{props.account.name}</Text>
-      <Text style={styles.balance}>${props.account.mask}</Text>
+      <Container selected={selected}>
+        <View>
+          <Header
+            title={props.account.name}
+            subtitle={
+              props.account.official_name
+                ? props.account.official_name.slice(0, 48)
+                : null
+            }
+            inverted={selected}
+          />
+        </View>
+        <View>
+          <Header
+            title={props.account.mask}
+            subtitle={
+              '$' + (Math.round(props.account.balances.current) || null)
+            }
+            inverted={selected}
+            aligned={'right'}
+            style={{fontFamily: 'Menlo'}}
+          />
+        </View>
+      </Container>
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    padding: base.padding,
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: colors.accent_2,
-    marginTop: base.margin,
-    borderRadius: base.radius,
-  },
-  selected: {
-    backgroundColor: '#3399FF',
-  },
-  balance: {
-    color: 'green',
-    fontSize: text.small,
-    fontFamily: text.mono,
-  },
-  name: {
-    fontSize: text.default,
-    fontWeight: text.heavy,
-  },
-});
 
 export default AccountListItem;
