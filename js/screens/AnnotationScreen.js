@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   flatList: {
-    backgroundColor: colors.accent_1,
+    backgroundColor: colors.background,
     padding: base.padding,
   },
 });
